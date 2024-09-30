@@ -1,0 +1,9 @@
+UPDATE 
+	[%1].[dbo].[serv_user_actions]
+SET 
+	[%1].[dbo].[serv_user_actions].[action] = %2, 
+	[%1].[dbo].[serv_user_actions].[updated_at] = CURRENT_TIMESTAMP 
+WHERE 
+	[%1].[dbo].[serv_user_actions].[personnel_id] = %3 AND 
+	[%1].[dbo].[serv_user_actions].[deviceId] = %4 AND 
+	[%1].[dbo].[serv_user_actions].[action] = %5

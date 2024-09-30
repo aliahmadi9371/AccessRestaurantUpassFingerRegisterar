@@ -1,0 +1,10 @@
+SELECT 
+	* 
+FROM 
+	[%1].[dbo].[serv_restaurant_log]
+WHERE
+	CONVERT(date, [%1].[dbo].[serv_restaurant_log].[dateTime]) = CONVERT(date,getdate()) AND
+	[%1].[dbo].[serv_restaurant_log].[order_personnel_id] = %2 AND
+	%3 = %3 AND
+	%4 = %4 AND
+	[%1].[dbo].[serv_restaurant_log].[food_status] = 1

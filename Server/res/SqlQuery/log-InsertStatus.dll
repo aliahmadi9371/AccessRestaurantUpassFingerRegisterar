@@ -1,0 +1,12 @@
+BEGIN TRAN
+    IF EXISTS ( SELECT * FROM [dbo].[serv_terminal_status] WHERE terminalID = %1 )
+ 
+      UPDATE [dbo].[serv_terminal_status]
+         SET [terminalId] = %1, [terminal] = %2, [door] = %3, [cover] = %4, [lock] = %5, [open] = %6, [updated_at] = CURRENT_TIMESTAMP 
+      WHERE  [terminalId] = %1;
+ 
+    ELSE 
+      INSERT INTO [dbo].[serv_terminal_status] ( [terminalId], [terminal], [door], [cover], [lock], [open], [created_at], [updated_at] )
+			VALUES ( %1, %2, %3, %4, %5, %6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP )
+			
+COMMIT

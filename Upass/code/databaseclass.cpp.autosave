@@ -1,0 +1,7 @@
+#include "databaseclass2.h"
+
+DatabaseClass::DatabaseClass(QObject *parent) : QObject(parent)
+{
+
+}
+

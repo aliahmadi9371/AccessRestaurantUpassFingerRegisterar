@@ -1,0 +1,13 @@
+SELECT
+	CONCAT( asacontroller.users.fName, ' ', asacontroller.users.lName ) AS PersonnelName,
+	asacontroller.personnels.personnel_code AS PersonnelCode 
+FROM
+	asacontroller.personnels
+	JOIN asacontroller.users ON asacontroller.personnels.user_id = asacontroller.users.id
+	JOIN asacontroller.personnel_restaurants ON asacontroller.personnel_restaurants.personnel_id = asacontroller.personnels.id 
+WHERE
+	asacontroller.personnels.id = %1 AND 
+	asacontroller.personnel_restaurants.restaurant_id = %2
+	AND asacontroller.personnels.archive = 0
+	AND asacontroller.personnel_restaurants.deleted_at is NULL 
+	

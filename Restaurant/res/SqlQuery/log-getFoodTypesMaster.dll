@@ -1,0 +1,10 @@
+SELECT
+	asacontroller.foods.name AS FoodName,
+	asacontroller.food_restaurants.food_type AS FoodType
+FROM
+	asacontroller.food_restaurants
+	JOIN asacontroller.foods ON asacontroller.food_restaurants.food_id = asacontroller.foods.id
+WHERE
+	food_restaurants.restaurant_id = %1
+	AND Date( food_restaurants.food_date ) = date( now( ) )
+ 	AND asacontroller.food_restaurants.deleted_at is NULL 

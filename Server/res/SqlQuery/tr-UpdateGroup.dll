@@ -1,0 +1,3 @@
+UPDATE [dbo].[terminals]
+SET status_access_group = 10, updated_at = CURRENT_TIMESTAMP 
+WHERE terminalId = %1;

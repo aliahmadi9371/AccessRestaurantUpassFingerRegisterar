@@ -1,0 +1,31 @@
+SELECT DISTINCT
+	personnelTable.id AS userID,
+	deviceTable.deviceId AS deviceId,
+	YEAR ( personnelTable.created_at ) AS startYear,
+	MONTH ( personnelTable.created_at ) AS startMonth,
+	DAY ( personnelTable.created_at ) AS startDay,
+	YEAR ( personnelTable.expire_time ) AS endYear,
+	MONTH (personnelTable.expire_time ) AS endMonth,
+	DAY ( personnelTable.expire_time ) AS endDay,
+	tagTable.mainItem AS cardValue,
+	fingerTable.fingerPrint AS fingerValue,
+	personnelTable.personnel_code AS personnelCode
+FROM  
+	[%1].[dbo].[personnels] personnelTable
+LEFT JOIN [%1].[dbo].[personnel_restaurants] personnelRestaurantTable  ON personnelTable.id = personnelRestaurantTable.personnel_id
+LEFT JOIN [%1].[dbo].[restaurants] restaurantTable  ON personnelRestaurantTable.restaurant_id = restaurantTable.id
+LEFT JOIN [%1].[dbo].[devices] deviceTable ON restaurantTable.id = deviceTable.restaurant_id
+LEFT JOIN [%2].[dbo].[real_users] userTable  ON personnelTable.personnel_code = userTable.personalCode
+LEFT JOIN [%2].[dbo].[tags] tagTable ON userTable.id = tagTable.real_user_fr
+LEFT JOIN [%2].[dbo].[finger_prints] fingerTable ON fingerTable.tag_fr = tagTable.id
+
+WHERE	
+	personnelTable.archive = 0 AND
+	restaurantTable.archive = 0 AND
+	deviceTable.deviceId = %3 AND
+	personnelTable.id = %4 AND
+	tagTable.archived IS null AND
+	userTable.isGuest = 0 AND
+	(tagTable.tagId = 6 OR
+	(tagTable.tagId = 3 AND
+	tagTable.cardReader = 1))

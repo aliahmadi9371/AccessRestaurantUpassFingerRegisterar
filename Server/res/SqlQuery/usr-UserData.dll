@@ -1,0 +1,32 @@
+SELECT DISTINCT
+dbo.real_users.id AS userID,
+dbo.real_users.personalCode AS personnelCode,
+dbo.terminals.terminalId AS terminalID,
+dbo.real_users.isAdmin,
+dbo.tags.mainItem AS cardValue,
+dbo.finger_prints.fingerPrint AS fingerValue,
+YEAR ( dbo.real_users.registerTime ) AS startYear,
+MONTH ( dbo.real_users.registerTime ) AS startMonth,
+DAY ( dbo.real_users.registerTime ) AS startDay,
+YEAR ( dbo.real_users.expireTime ) AS endYear,
+MONTH ( dbo.real_users.expireTime ) AS endMonth,
+DAY ( dbo.real_users.expireTime ) AS endDay,
+dbo.personnel_access_groups.access_group_fr AS accessGroupCode
+
+FROM
+dbo.real_users
+LEFT JOIN dbo.tags ON dbo.tags.real_user_fr = dbo.real_users.id
+LEFT JOIN dbo.finger_prints ON dbo.finger_prints.tag_fr = dbo.tags.id
+LEFT JOIN dbo.personnel_access_groups ON dbo.personnel_access_groups.real_user_fr = dbo.real_users.id
+LEFT JOIN dbo.access_group_terminals ON dbo.personnel_access_groups.access_group_fr = dbo.access_group_terminals.access_group_fr
+LEFT JOIN dbo.terminals ON dbo.access_group_terminals.terminal_fr = dbo.terminals.id
+WHERE
+dbo.real_users.id = %1 AND
+dbo.terminals.terminalId = %2 AND
+dbo.tags.archived IS null AND
+dbo.personnel_access_groups.archived IS null AND
+dbo.terminals.archived IS null AND
+dbo.real_users.isGuest = 0 AND
+(dbo.tags.tagId = 6 OR
+(dbo.tags.tagId = 3 AND
+dbo.tags.cardReader = 1))

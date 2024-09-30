@@ -1,0 +1,10 @@
+SELECT
+	asacontroller.mastercards.FingerPrint,
+	asacontroller.mastercards.CardSerialNumber,
+	asacontroller.mastercards.Name
+FROM asacontroller.mastercards
+WHERE
+	asacontroller.mastercards.DeviceId = %1 AND
+	asacontroller.mastercards.UserId = %2 AND
+	asacontroller.mastercards.UserAction = %3 AND
+	asacontroller.mastercards.Archeived IS NULL

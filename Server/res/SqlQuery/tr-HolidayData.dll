@@ -1,0 +1,18 @@
+SELECT DISTINCT
+dbo.holidays_details.holiday_fr AS holidayCode,
+dbo.holidays_details.holiday_day AS dateDay,
+dbo.holidays_details.holiday_month AS dateMonth
+
+FROM
+dbo.access_group_terminals
+INNER JOIN dbo.access_groups ON dbo.access_group_terminals.access_group_fr = dbo.access_groups.id
+INNER JOIN dbo.access_groups_details ON dbo.access_groups_details.access_group_fr = dbo.access_groups.id
+INNER JOIN dbo.access_times ON dbo.access_groups_details.access_time_fr = dbo.access_times.id
+INNER JOIN dbo.holidays_details ON dbo.holidays_details.holiday_fr = dbo.access_times.holiday_fr
+INNER JOIN dbo.terminals ON dbo.access_group_terminals.terminal_fr = dbo.terminals.id
+WHERE
+dbo.terminals.archived is null AND
+dbo.terminals.terminalId = %1
+
+
+ORDER BY dbo.holidays_details.holiday_fr

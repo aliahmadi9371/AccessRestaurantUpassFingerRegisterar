@@ -1,0 +1,47 @@
+BEGIN TRAN
+    IF EXISTS 
+	( 
+		SELECT 
+			* 
+		FROM 
+			[%1].[dbo].[serv_terminal_status] 
+		WHERE 
+			[%1].[dbo].[serv_terminal_status].[terminalID] = %1 
+	)
+	UPDATE 
+		[%1].[dbo].[serv_terminal_status]
+    SET 
+		[%1].[dbo].[serv_terminal_status].[terminalId] = %2, 
+		[%1].dbo].[serv_terminal_status].[terminal] = %3, 
+		[%1].[dbo].[serv_terminal_status].[door] = %4, 
+		[%1].[dbo].[serv_terminal_status].[cover] = %5, 
+		[%1].[dbo].[serv_terminal_status].[lock] = %6, 
+		[%1].[dbo].[serv_terminal_status].[open] = %7, 
+	    [%1].[dbo].[serv_terminal_status].[updated_at] = CURRENT_TIMESTAMP 
+    WHERE  
+		[%1].[dbo].[serv_terminal_status].[terminalID] = %2;
+    ELSE 
+      INSERT 
+		INTO [%1].[dbo].[serv_terminal_status] 
+		(
+			[%1].[dbo].[serv_terminal_status].[terminalId], 
+			[%1].[dbo].[serv_terminal_status].[terminal], 
+			[%1].[dbo].[serv_terminal_status].[door], 
+			[%1].[dbo].[serv_terminal_status].[cover], 
+			[%1].[dbo].[serv_terminal_status].[lock], 
+			[%1].[dbo].[serv_terminal_status].[open], 
+			[%1].[dbo].[serv_terminal_status].[created_at], 
+			[%1].[dbo].[serv_terminal_status].[updated_at] 
+		)
+		VALUES 
+		( 
+			%2, 
+			%3, 
+			%4, 
+			%5, 
+			%6, 
+			%7, 
+			CURRENT_TIMESTAMP, 
+			CURRENT_TIMESTAMP 
+		)	
+COMMIT

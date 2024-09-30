@@ -1,0 +1,4 @@
+UPDATE [dbo].[serv_user_actions]
+SET action = %1, updated_at = CURRENT_TIMESTAMP 
+WHERE real_user_fr = %2 AND terminalId = %3 AND action = %4
+

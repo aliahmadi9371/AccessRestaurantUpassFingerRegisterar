@@ -1,0 +1,10 @@
+SELECT 
+	*  
+FROM 
+	asacontroller.rest_userlogs
+WHERE
+	DATE(asacontroller.rest_userlogs.DateTime) = CURDATE() AND
+	asacontroller.rest_userlogs.PersonnelId = %1 AND
+	asacontroller.rest_userlogs.ReservationId = %2 AND
+	asacontroller.rest_userlogs.FoodStatus = 1 AND
+	asacontroller.rest_userlogs.DeviceId = %3

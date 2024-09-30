@@ -1,0 +1,82 @@
+#ifndef _UCBioAPI_SMARTCARD_H
+#define _UCBioAPI_SMARTCARD_H
+
+#include "UCBioAPI.h"
+#include "UCBioAPI_SmartCardType.h"
+
+// (FSH01RF, FOH01RF, FR-100)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef _UCBioAPI_LOAD_LIBRARY
+
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_RFPowerOn(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_RFPowerOff(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_RFFunction(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pCmdBuff, UCBioAPI_UINT16 nCmdLen, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+
+   // Mifare_S50
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReadSerial(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReadBlock(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_WriteBlock(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReadSector(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum,  UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_WriteSector(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReadSectorFieldContent(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 StartSectorNum, UCBioAPI_UINT8 EndSectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_WriteSectorFieldContent(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 StartSectorNum, UCBioAPI_UINT8 EndSectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_PreValue(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReadValue(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_IncrementValue(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_DecrementValue(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_WriteSectorTrailer(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* NewAccessBit, UCBioAPI_UINT8* NewKeyA, UCBioAPI_UINT8* NewKeyB, UCBioAPI_UINT16 wLed);
+
+   // ISO14443_A
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_ReqA(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_WupA(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_Select(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_HaltA(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_Rats(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 fsdi, UCBioAPI_UINT8 cid, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_PpsRequest(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 cid, UCBioAPI_UINT8 pps0, UCBioAPI_UINT8 pps1, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_BlockFormat(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 pcb, UCBioAPI_UINT8 CidOrNad, UCBioAPI_UINT8* inf, UCBioAPI_UINT8 infLen, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_Deselect(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 CidOrNad, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   UCBioAPI_RETURN UCBioAPI UCBioAPI_SC_TypeA_ActiveState(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+
+#endif/*_UCBioAPI_LOAD_LIBRARY */
+
+
+   /* typedef for GetProcAddress() */
+
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_RFPowerOn)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_RFPowerOff)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_RFFunction)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pCmdBuff, UCBioAPI_UINT16 nCmdLen, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+
+   // Mifare_S50
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReadSerial)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReadBlock)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_WriteBlock)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReadSector)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum,  UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_WriteSector)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReadSectorFieldContent)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 StartSectorNum, UCBioAPI_UINT8 EndSectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_WriteSectorFieldContent)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 StartSectorNum, UCBioAPI_UINT8 EndSectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_PreValue)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReadValue)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_IncrementValue)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_DecrementValue)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8 BlockNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* pData, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_WriteSectorTrailer)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 AuthMode, UCBioAPI_UINT8 SectorNum, UCBioAPI_UINT8* KeyValue, UCBioAPI_UINT8* NewAccessBit, UCBioAPI_UINT8* NewKeyA, UCBioAPI_UINT8* NewKeyB, UCBioAPI_UINT16 wLed);
+
+   // ISO14443_A
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_ReqA)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_WupA)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_HaltA)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_Select)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_Rats)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 fsdi, UCBioAPI_UINT8 cid, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_PpsRequest)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 cid, UCBioAPI_UINT8 pps0, UCBioAPI_UINT8 pps1, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_BlockFormat)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 pcb, UCBioAPI_UINT8 CidOrNad, UCBioAPI_UINT8* inf, UCBioAPI_UINT8 infLen, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_Deselect)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8 CidOrNad, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+   typedef UCBioAPI_RETURN (UCBioAPI* FP_UCBioAPI_SC_TypeA_ActiveState)(UCBioAPI_HANDLE hHandle, UCBioAPI_UINT8* pResultBuff, UCBioAPI_UINT16* nResultLen, UCBioAPI_UINT16 wLed);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif/*_UCBioAPI_SMARTCARD_H */

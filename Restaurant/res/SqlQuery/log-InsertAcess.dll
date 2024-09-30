@@ -1,0 +1,37 @@
+INSERT 
+	INTO asacontroller.rest_userlogs 
+		(
+		asacontroller.rest_userlogs.PersonnelId, 
+		asacontroller.rest_userlogs.PersonnelCode, 
+		asacontroller.rest_userlogs.PersonnelName, 
+		asacontroller.rest_userlogs.FoodId, 
+		asacontroller.rest_userlogs.FoodName, 
+		asacontroller.rest_userlogs.ReservationId, 
+		asacontroller.rest_userlogs.FoodStatus, 
+		asacontroller.rest_userlogs.CardFinger, 
+		asacontroller.rest_userlogs.CardNumber, 
+		asacontroller.rest_userlogs.DelivaryId, 
+		asacontroller.rest_userlogs.DeliveryName, 
+		asacontroller.rest_userlogs.DeviceId, 
+		asacontroller.rest_userlogs.DateTime, 
+		asacontroller.rest_userlogs.CreatedAt, 
+		asacontroller.rest_userlogs.UpdatedAt
+		)
+VALUES
+( 
+	%1, 
+	%2, 
+	%3, 
+	%4, 
+	%5, 
+	%6, 
+	%7, 
+	%8,
+	%9,
+	%10, 
+	%11, 
+	%12, 
+	CURRENT_TIMESTAMP, 
+	CURRENT_TIMESTAMP, 
+	CURRENT_TIMESTAMP 
+)

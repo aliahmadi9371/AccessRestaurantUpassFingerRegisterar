@@ -1,0 +1,28 @@
+DECLARE @due_date datetime 
+SELECT @due_date = MIN(action_date)         
+ from [dbo].[serv_user_actions]
+ WHERE real_user_fr = %2
+ AND terminalId = %3
+ AND action = %4
+
+
+
+IF @due_date is null 
+    UPDATE [dbo].[serv_user_actions]
+    SET action = %1,
+    updated_at = CURRENT_TIMESTAMP
+
+    WHERE real_user_fr = %2
+   AND terminalId = %3
+   AND action = %4
+   AND  action_date is null
+ELSE  
+   UPDATE [dbo].[serv_user_actions]
+   SET action = %1,
+   updated_at = CURRENT_TIMESTAMP
+
+   WHERE real_user_fr = %2
+   AND terminalId = %3
+   AND action = %4
+   AND  action_date = @due_date  
+

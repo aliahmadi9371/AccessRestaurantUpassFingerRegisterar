@@ -1,0 +1,2 @@
+select * from [serv_user_actions] where [action] in (11, 21, 31) 
+ORDER BY id DESC

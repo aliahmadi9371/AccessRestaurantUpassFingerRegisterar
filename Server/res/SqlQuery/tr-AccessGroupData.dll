@@ -1,0 +1,11 @@
+SELECT DISTINCT
+dbo.access_group_terminals.access_group_fr AS accessGroupCode,
+dbo.access_groups_details.access_time_fr AS accessTimeCode
+FROM
+dbo.access_groups_details
+INNER JOIN dbo.access_group_terminals ON dbo.access_groups_details.access_group_fr = dbo.access_group_terminals.access_group_fr
+INNER JOIN dbo.terminals ON dbo.access_group_terminals.terminal_fr = dbo.terminals.id
+WHERE
+dbo.terminals.archived is null AND
+dbo.terminals.terminalId = %1
+ORDER BY dbo.access_group_terminals.access_group_fr

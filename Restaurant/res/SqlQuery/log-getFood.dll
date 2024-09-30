@@ -1,0 +1,27 @@
+SELECT
+	CONCAT( asacontroller.users.fName, ' ', asacontroller.users.lName ) AS PersonnelName,
+	asacontroller.personnels.personnel_code AS PersonnelCode,
+	asacontroller.foods.name AS FoodName,
+	asacontroller.personnel_reservation.food_type AS FoodType,
+	asacontroller.food_restaurants.id AS ReservationId,
+	asacontroller.foods.id AS FoodId
+FROM
+	asacontroller.personnels
+	JOIN asacontroller.users ON asacontroller.personnels.user_id = asacontroller.users.id
+	JOIN asacontroller.personnel_restaurants ON asacontroller.personnel_restaurants.personnel_id = asacontroller.personnels.id
+	JOIN asacontroller.personnel_reservation ON asacontroller.personnels.id = asacontroller.personnel_reservation.personnel_id
+	JOIN asacontroller.food_restaurants ON date( asacontroller.personnel_reservation.food_date ) = date( asacontroller.food_restaurants.food_date ) AND asacontroller.food_restaurants.deleted_at is NULL
+	AND asacontroller.personnel_reservation.food_type = asacontroller.food_restaurants.food_type
+	JOIN asacontroller.foods ON asacontroller.food_restaurants.food_id = asacontroller.foods.id 
+WHERE
+	asacontroller.personnels.id = %1
+	AND asacontroller.food_restaurants.restaurant_id = %2
+	AND asacontroller.food_restaurants.deleted_at is NULL
+	AND asacontroller.personnel_restaurants.deleted_at is NULL 
+	AND asacontroller.personnel_reservation.deleted_at is NULL 
+	AND asacontroller.personnels.archive = 0
+	AND Date(asacontroller.food_restaurants.food_date) = date(now())
+	
+	
+
+

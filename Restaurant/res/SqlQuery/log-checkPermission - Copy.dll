@@ -1,0 +1,6 @@
+SELECT
+	asacontroller.personnels.failure_to_Present
+FROM
+	asacontroller.personnels 
+WHERE
+	asacontroller.personnels.id = %1

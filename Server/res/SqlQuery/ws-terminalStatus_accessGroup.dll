@@ -1,0 +1,1 @@
+select * from [terminals] where [status_access_group] in (11, 21, 31) and [archived] is null

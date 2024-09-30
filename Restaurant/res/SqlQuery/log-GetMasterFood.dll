@@ -1,0 +1,9 @@
+SELECT
+	asacontroller.mastercards.FoodType,
+	asacontroller.mastercards.Name
+FROM asacontroller.mastercards
+WHERE
+  asacontroller.mastercards.UserId = %1 AND
+	asacontroller.mastercards.DeviceId = %2 AND
+	asacontroller.mastercards.Archeived IS NULL
+	

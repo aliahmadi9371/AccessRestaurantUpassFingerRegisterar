@@ -1,0 +1,8 @@
+SELECT 
+	[%1].[dbo].[serv_user_actions].[personnel_id] AS UserId,
+	[%1].[dbo].[serv_user_actions].[action]
+FROM 
+	[%1].[dbo].[serv_user_actions] 
+where 
+	[%1].[dbo].[serv_user_actions].[action] in (11, 21, 31) AND
+	[%1].[dbo].[serv_user_actions].[deviceId] = %2

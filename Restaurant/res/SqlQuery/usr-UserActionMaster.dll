@@ -1,0 +1,10 @@
+UPDATE 
+	asacontroller.mastercards
+SET 
+	asacontroller.mastercards.UserAction = %1, 
+	asacontroller.mastercards.UpdatedAt = CURRENT_TIMESTAMP 
+WHERE 
+	asacontroller.mastercards.UserId = %2 AND 
+	asacontroller.mastercards.DeviceId = %3 AND 
+	asacontroller.mastercards.UserAction = %4 AND
+	asacontroller.mastercards.Archeived IS NULL

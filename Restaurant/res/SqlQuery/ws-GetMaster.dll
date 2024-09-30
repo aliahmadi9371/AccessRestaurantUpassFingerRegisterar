@@ -1,0 +1,8 @@
+SELECT
+	asacontroller.mastercards.UserId,
+	asacontroller.mastercards.UserAction
+FROM asacontroller.mastercards
+WHERE
+	asacontroller.mastercards.UserAction IN (21, 31) AND
+	asacontroller.mastercards.DeviceId = %1 AND
+	asacontroller.mastercards.Archeived IS NULL

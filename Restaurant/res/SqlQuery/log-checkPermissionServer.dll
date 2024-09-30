@@ -1,0 +1,9 @@
+SELECT COUNT
+	( * ) % 2 AS isPresent
+FROM
+	[%1].[dbo].[access_logs]
+	INNER JOIN [%1].[dbo].[real_users] ON [%1].[dbo].[access_logs].[real_user_fr] = [%1].[dbo].[real_users].[id] 
+WHERE
+	[%1].[dbo].[real_users].[personalCode] = %2 AND 
+	[%1].[dbo].[access_logs].[seqId] = '1' AND 
+	CONVERT ( DATE, getdate( ) ) = CONVERT ( DATE, [%1].[dbo].[access_logs].[date] )

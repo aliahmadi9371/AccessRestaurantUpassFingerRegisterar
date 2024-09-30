@@ -1,0 +1,17 @@
+SELECT DISTINCT
+dbo.access_times_details.access_time_fr AS accessTimeCode,
+dbo.access_times.holiday_fr AS holidayCode,
+dbo.access_times_details.dayOfWeek AS dayNum,
+dbo.access_times_details.time_zone_fr AS dayCode
+
+FROM
+dbo.access_group_terminals
+INNER JOIN dbo.access_groups_details ON dbo.access_group_terminals.access_group_fr = dbo.access_groups_details.access_group_fr
+INNER JOIN dbo.access_times ON dbo.access_groups_details.access_time_fr = dbo.access_times.id
+INNER JOIN dbo.access_times_details ON dbo.access_times_details.access_time_fr = dbo.access_times.id
+INNER JOIN dbo.terminals ON dbo.access_group_terminals.terminal_fr = dbo.terminals.id
+WHERE
+dbo.terminals.archived is null AND
+dbo.terminals.terminalId = %1
+
+ORDER BY dbo.access_times_details.access_time_fr 

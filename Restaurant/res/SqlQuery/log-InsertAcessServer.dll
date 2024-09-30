@@ -1,0 +1,36 @@
+INSERT 
+	INTO [%1].[dbo].[serv_restaurant_log]
+	(
+		[%1].[dbo].[serv_restaurant_log].[order_personnel_id],
+		[%1].[dbo].[serv_restaurant_log].[order_personnel_name],
+		[%1].[dbo].[serv_restaurant_log].[food_id],
+		[%1].[dbo].[serv_restaurant_log].[food_name],
+		[%1].[dbo].[serv_restaurant_log].[reserve_id],
+		[%1].[dbo].[serv_restaurant_log].[food_status],
+		[%1].[dbo].[serv_restaurant_log].[card_finger],
+		[%1].[dbo].[serv_restaurant_log].[card_number],
+		[%1].[dbo].[serv_restaurant_log].[delivery_personnel_id],
+		[%1].[dbo].[serv_restaurant_log].[delivery_personnel_name],
+		[%1].[dbo].[serv_restaurant_log].[deviceId],
+		[%1].[dbo].[serv_restaurant_log].[dateTime],
+		[%1].[dbo].[serv_restaurant_log].[created_at],
+		[%1].[dbo].[serv_restaurant_log].[lastUpdate]
+	)
+
+VALUES
+	(
+		%2,
+		%3,
+		%4,
+		%5,
+		%6,
+		%7,
+		%8,
+		%9,
+		%10,
+		%11,
+		%12,
+		CURRENT_TIMESTAMP,
+		CURRENT_TIMESTAMP,
+		CURRENT_TIMESTAMP
+	)

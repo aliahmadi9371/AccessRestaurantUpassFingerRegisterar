@@ -1,0 +1,3 @@
+UPDATE [dbo].[serv_user_actions] 
+SET [dbo].[serv_user_actions].[count_resend] = [dbo].[serv_user_actions].[count_resend] + 1 
+WHERE [dbo].[serv_user_actions].[id] = %1
