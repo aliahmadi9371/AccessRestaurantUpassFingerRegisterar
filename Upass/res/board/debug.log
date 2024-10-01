@@ -1,0 +1,18 @@
+[0530/191241:INFO:CONSOLE(0)] "XMLHttpRequest cannot load https://ad-start.auxtool.com/ad-start-visitor/add. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://www.altium.com' is therefore not allowed access.", source: https://www.altium.com/ad-start/ (0)
+[0601/101403:INFO:CONSOLE(0)] "XMLHttpRequest cannot load https://ad-start.auxtool.com/ad-start-visitor/add. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://www.altium.com' is therefore not allowed access.", source: https://www.altium.com/ad-start/ (0)
+[0601/121827:INFO:CONSOLE(0)] "XMLHttpRequest cannot load https://ad-start.auxtool.com/ad-start-visitor/add. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://www.altium.com' is therefore not allowed access.", source: https://www.altium.com/ad-start/ (0)
+[0601/135941:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0601/135941:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0818/105315:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0818/162534:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0818/162543:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0818/184142:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0818/190453:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141654:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141659:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141704:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141709:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141714:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141719:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141724:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0219/141729:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
